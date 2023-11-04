@@ -8,13 +8,16 @@
 > Added this notes.md file
 
 * Fri Nov 3, 2023
+> how to dial?  all timing, as "keypad" package offers, or on hook off hook switch? or # and * for on/off hook <- going with * and #
 > Added a finite state machine diagram in Visual Paradigm for the flow of phone calls
 
-* Implement that diagram as a GenStateMachine
+* Add a repo called "FONA-phone" as a shared library. The start of that code is in the vintagecell project as ModemServer. 
+* Pull ModemServer from VintageCell and make it a shared dependency on gitub
+  
+* Implement the finite state machine diagram as a GenStateMachine
 
 ### TODO:
-* Pull ModemServer from VintageCell and make it shareable (shared module on gitub? open source it as fona_phone?  release on hex.pm?)
-* how to dial?  all timing, as "keypad" package offers, or on hook off hook switch? or # and * for on/off hook
+* open source it as fona_phone?  release on hex.pm?
 
 ### How should it work?
 * need a button for hanging up.  Physical button or use # on keypad?
