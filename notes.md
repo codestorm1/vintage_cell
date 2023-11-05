@@ -11,17 +11,21 @@
 > how to dial?  all timing, as "keypad" package offers, or on hook off hook switch? or # and * for on/off hook <- going with * and #
 > Added a finite state machine diagram in Visual Paradigm for the flow of phone calls
 
-* Add a repo called "FONA-phone" as a shared library. The start of that code is in the vintagecell project as ModemServer. 
-* Pull ModemServer from VintageCell and make it a shared dependency on gitub
-  
-* Implement the finite state machine diagram as a GenStateMachine
+
+* Sat Nov 4, 2023
+> set up fona_modem repo to be used as a library by this app
+> used a local path to do this.  This seems easier than bumping tags to get latest fona_modem
+> It has a repo, codestorm1/fona_modem.
 
 ### TODO:
-* open source it as fona_phone?  release on hex.pm?
+* Pull ModemServer from VintageCell and make it a shared dependency on gitub
+* Implement the finite state machine diagram as a GenStateMachine
+
+* open source it as fona_phone?  release on hex.pm? <- distant future
 
 ### How should it work?
-* need a button for hanging up.  Physical button or use # on keypad?
-* need a button to answer incoming calls.  Physical button or use * on keypad?
+* need a button for hanging up.  Physical button or use # on keypad? <- use #
+* need a button to answer incoming calls.  Physical button or use * on keypad? <- use *
 
 * support plug in handset
 * add a speakerphone?

@@ -36,6 +36,6 @@ defmodule NervesCell do
 
   """
   def hello do
-    :world
+    :worldly_person
   end
 end

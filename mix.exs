@@ -70,7 +70,9 @@ defmodule NervesCell.MixProject do
       {:nerves_system_x86_64, "~> 1.24", runtime: false, targets: :x86_64},
       {:nerves_system_grisp2, "~> 0.8", runtime: false, targets: :grisp2},
       {:nerves_system_mangopi_mq_pro, "~> 0.6", runtime: false, targets: :mangopi_mq_pro},
-      {:keypad, "~> 0.3"}
+      {:keypad, "~> 0.3"},
+      # {:fona_modem, git: "git@github.com:codestorm1/fona_modem.git", tag: "v0.1.0"}
+      {:fona_modem, path: "../fona_modem"}
     ]
   end
 
