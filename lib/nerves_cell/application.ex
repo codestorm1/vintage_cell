@@ -16,6 +16,15 @@ defmodule NervesCell.Application do
         # Children for all targets
         # Starts a worker by calling: NervesCell.Worker.start_link(arg)
         # {NervesCell.Worker, arg},
+        # {NervesCell.KeypadDialer,
+        #  %{
+        #    row_pins: [17, 27, 23, 24],
+        #    col_pins: [5, 6, 13, 26],
+        #    input: "",
+        #    matrix: nil,
+        #    size: nil,
+        #    last_message_at: 0
+        #  }}
       ] ++ children(target())
 
     Supervisor.start_link(children, opts)

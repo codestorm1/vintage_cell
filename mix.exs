@@ -34,7 +34,7 @@ defmodule NervesCell.MixProject do
   def application do
     [
       mod: {NervesCell.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :fona_modem]
     ]
   end
 
