@@ -10,6 +10,12 @@ Application.start(:nerves_bootstrap)
 
 config :nerves_cell, target: Mix.target()
 
+# Will this help FONA stability?  It did with vintage_cell project.
+# This sends IEx communication to ttyS0 and away from the UART to FONA ttyAMA0
+# mango uses ttys0, trying switching this to ttyAMA0
+# config :nerves, :erlinit, ctty: "ttyAMA0"
+config :nerves, :erlinit, ctty: "ttyS0"
+
 # Customize non-Elixir parts of the firmware. See
 # https://hexdocs.pm/nerves/advanced-configuration.html for details.
 

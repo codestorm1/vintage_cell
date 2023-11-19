@@ -17,11 +17,19 @@
 > used a local path to do this.  This seems easier than bumping tags to get latest fona_modem
 > It has a repo, codestorm1/fona_modem.
 
+* Sun Nov 18, 2023
+> Added a wire to the FONA-Pi board that I'm using for nerves cell - Grounded the FONA to the Pi.
+> Able to reference FonaModem now as a local dependency
+> Able to get the FONA to respond to AT commands
+> Last time it booted, it was able to sync with AT modem commands and responses, although one response was ERROR 
+> got FONA to make a call using IEx {:status, pid, _, _} = :sys.get_status(FonaModem)
+
 ### TODO:
-* Pull ModemServer from VintageCell and make it a shared dependency on gitub
+* Get keypad to work
 * Implement the finite state machine diagram as a GenStateMachine
 
-* open source it as fona_phone?  release on hex.pm? <- distant future
+* Make fona_modem a shared dependency on gitub
+* open source it?  release on hex.pm? <- distant future
 
 ### How should it work?
 * need a button for hanging up.  Physical button or use # on keypad? <- use #

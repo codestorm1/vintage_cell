@@ -25,6 +25,7 @@ defmodule NervesCell.Application do
         #    size: nil,
         #    last_message_at: 0
         #  }}
+        {FonaModem, self()}
       ] ++ children(target())
 
     Supervisor.start_link(children, opts)
