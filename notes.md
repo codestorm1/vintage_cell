@@ -40,7 +40,6 @@ Thu Nov 30
 > got keypad detecting keypresses and sending AT commands to the FONA 3G also works. 
 
 ### TODO:
-* Fork keypad, make start_link fix.
 * Implement the finite state machine diagram as a GenStateMachine
 
 * Make fona_modem a shared dependency on gitub
