@@ -34,6 +34,11 @@
 > Fixed problem where Keypad GenServer wouldn't start.  Looks like Keypad package implemented a start_link with no params instead of start_link/1.  If that's correct, make an issue/PR?
 > Was able to see keypresses of all keys in the Logger
 
+Thu Nov 30
+> Forked Keypad, changed start_link to have 1 param instead of 0 in keypad.ex.  Changed ref to use local forked version.
+> Not sure if this is an issue with keypad package or if I just needed to implement my own start_link/1
+> got keypad detecting keypresses and sending AT commands to the FONA 3G also works. 
+
 ### TODO:
 * Fork keypad, make start_link fix.
 * Implement the finite state machine diagram as a GenStateMachine
