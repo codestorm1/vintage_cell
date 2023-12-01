@@ -17,19 +17,28 @@
 > used a local path to do this.  This seems easier than bumping tags to get latest fona_modem
 > It has a repo, codestorm1/fona_modem.
 
-* Sun Nov 18, 2023
+* Sat Nov 18, 2023
 > Added a wire to the FONA-Pi board that I'm using for nerves cell - Grounded the FONA to the Pi.
 > Able to reference FonaModem now as a local dependency
 > Able to get the FONA to respond to AT commands
 > Last time it booted, it was able to sync with AT modem commands and responses, although one response was ERROR 
 > got FONA to make a call using IEx {:status, pid, _, _} = :sys.get_status(FonaModem)
 
+* Sun Nov 19, 2023
+> Nothing?!
+
+* Sun Nov 26, 2023
+> ???
+
+* Wed Nov 29
+> Fixed problem where Keypad GenServer wouldn't start.  Looks like Keypad package implemented a start_link with no params instead of start_link/1.  If that's correct, make an issue/PR?
+> Was able to see keypresses of all keys in the Logger
+
 ### TODO:
-* Get keypad to work
+* Fork keypad, make start_link fix.
 * Implement the finite state machine diagram as a GenStateMachine
 
 * Make fona_modem a shared dependency on gitub
-* open source it?  release on hex.pm? <- distant future
 
 ### How should it work?
 * need a button for hanging up.  Physical button or use # on keypad? <- use #
@@ -38,4 +47,5 @@
 * support plug in handset
 * add a speakerphone?
 * bluetooth handset support or nah?
+* open source fona_modem?  release on hex.pm? <- distant future
 
