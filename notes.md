@@ -41,8 +41,8 @@ Thu Nov 30
 
 Fri Dec 1
 > rewrote function in fona_modem that calls Circuits.UART.read (fona_modem repo)
-
-
+> https://www.erlang.org/doc/design_principles/statem
+> The short version: choose state_functions
 ### TODO:
 * Implement the finite state machine diagram as a GenStateMachine
 

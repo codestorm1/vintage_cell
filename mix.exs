@@ -34,7 +34,7 @@ defmodule NervesCell.MixProject do
   def application do
     [
       mod: {NervesCell.Application, []},
-      extra_applications: [:logger, :runtime_tools, :fona_modem]
+      extra_applications: [:logger, :runtime_tools, :fona_modem, :gen_state_machine]
     ]
   end
 
@@ -72,7 +72,8 @@ defmodule NervesCell.MixProject do
       {:nerves_system_mangopi_mq_pro, "~> 0.6", runtime: false, targets: :mangopi_mq_pro},
       {:keypad, path: "../keypad"},
       # {:fona_modem, git: "git@github.com:codestorm1/fona_modem.git", tag: "v0.1.0"}
-      {:fona_modem, path: "../fona_modem"}
+      {:fona_modem, path: "../fona_modem"},
+      {:gen_state_machine, "~> 3.0"}
     ]
   end
 
