@@ -39,6 +39,10 @@ Thu Nov 30
 > Not sure if this is an issue with keypad package or if I just needed to implement my own start_link/1
 > got keypad detecting keypresses and sending AT commands to the FONA 3G also works. 
 
+Fri Dec 1
+> rewrote function in fona_modem that calls Circuits.UART.read (fona_modem repo)
+
+
 ### TODO:
 * Implement the finite state machine diagram as a GenStateMachine
 

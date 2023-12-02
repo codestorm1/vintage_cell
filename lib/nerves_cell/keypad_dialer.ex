@@ -8,7 +8,7 @@ defmodule NervesCell.KeypadDialer do
 
   @impl Keypad
   def handle_keypress(key, %{input: ""} = state) do
-    Logger.info("First Keypress: #{key}")
+    Logger.debug("First Keypress: #{key}")
     # Reset input after 5 seconds
     Process.send_after(self(), :reset, 5000)
     %{state | input: key}
@@ -16,14 +16,12 @@ defmodule NervesCell.KeypadDialer do
 
   @impl Keypad
   def handle_keypress(key, %{input: input} = state) do
-    Logger.info("Keypress: #{key}")
+    Logger.debug("Keypress: #{key}")
     %{state | input: input <> key}
   end
 
   def handle_info(:reset, state) do
-    dbg("resetting")
-    # {:noreply, %{state | input: ""}}
-    {:noreply, state}
+    {:noreply, %{state | input: ""}}
   end
 
   @doc """
