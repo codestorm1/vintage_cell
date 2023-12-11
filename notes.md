@@ -44,8 +44,24 @@ Fri Dec 1
 > https://www.erlang.org/doc/design_principles/statem#choosing-the-callback-mode
 > The short version: choose state_functions
 
+Fri Dec 8
+> Got CellStateMachine working with a few different states and state changes
+
+Sat Dec 9
+> ?
+
+Sun Dec 10, 2023
+> Registering the servers with names.  Had some luck getting servers to start up/initialize
+
+### Questions
+Why does application.started_applications show GenStateMachine and not CellStateMachine?
+this works -> GenStateMachine.cast(CellStateMachine, :go_off_hook)
+but this doesn't -> NervesCell.CellStateMachine.go_on_hook
 
 ### TODO:
+* Need to have Keypad trigger state changes
+* Need to have CellStateMachine control fona_modem
+
 * Implement the finite state machine diagram as a GenStateMachine
 
 * Make fona_modem a shared dependency on gitub
