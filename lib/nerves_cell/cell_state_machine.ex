@@ -10,7 +10,7 @@ defmodule NervesCell.CellStateMachine do
 
   def start_link({state, data}) do
     Logger.info("[CellStateMachine Modem] start_link/1")
-    GenStateMachine.start_link(__MODULE__, {state, data}, name: CellStateMachine)
+    GenStateMachine.start_link(__MODULE__, {state, data}, name: __MODULE__)
   end
 
   @impl GenStateMachine
@@ -25,10 +25,12 @@ defmodule NervesCell.CellStateMachine do
   # Client API
   #
   def go_off_hook() do
+    Logger.info("casting to #{__MODULE__} :go_off_hook")
     GenStateMachine.cast(__MODULE__, :go_off_hook)
   end
 
   def go_on_hook() do
+    Logger.info("casting to #{__MODULE__} :go_on_hook")
     GenStateMachine.cast(__MODULE__, :go_on_hook)
   end
 
