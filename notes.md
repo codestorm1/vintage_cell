@@ -53,10 +53,15 @@ Sat Dec 9
 Sun Dec 10, 2023
 > Registering the servers with names.  Had some luck getting servers to start up/initialize
 
+Mon Dec 11
+> Fixed name registration.  Client API calls on CellStateMachine work now.
+> this works -> GenStateMachine.cast(CellStateMachine, :go_off_hook) 
+> but this doesn't -> NervesCell.CellStateMachine.go_on_hook <- (fixed with reg name change)
+
+* Change casts to calls for state machine to show caller what happened
+
 ### Questions
-Why does application.started_applications show GenStateMachine and not CellStateMachine?
-this works -> GenStateMachine.cast(CellStateMachine, :go_off_hook)
-but this doesn't -> NervesCell.CellStateMachine.go_on_hook
+Why does application.started_applications show GenStateMachine and not CellStateMachine? <- not a problem?
 
 ### TODO:
 * Need to have Keypad trigger state changes
