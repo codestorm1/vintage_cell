@@ -55,28 +55,45 @@ Sun Dec 10, 2023
 
 Mon Dec 11
 > Fixed name registration.  Client API calls on CellStateMachine work now.
-> this works -> GenStateMachine.cast(CellStateMachine, :go_off_hook) 
-> but this doesn't -> NervesCell.CellStateMachine.go_on_hook <- (fixed with reg name change)
 
+Tue Dec 12
+> ?
+>
+tone 11 is off hook warning
+https://cdn-shop.adafruit.com/datasheets/SIMCOM_SIM5320_ATC_EN_V2.02.pdf
+
+Wed Dec 13
+> FonaModem: Added play_tone, distinct from play_ext_tone.
+> Fixed handling of partial response from UART.read.
+> CellStateMachine is able to control FonaModem
+> Added play_tone function that plays sounds of digits
+> Also have play_ext_tone for sounds like dial tones, off hook warning, system busy
+
+Fri Dec 15
+>
+
+### TODO
+* complete the cycle of making a phone call
+* solder speaker connector
+* Add timeout to get to off hook warning state
+* Revisit the way KeyPad creates a GenServer as the client
+* Need to have Keypad trigger state changes
 * Change casts to calls for state machine to show caller what happened
+* Make fona_modem a shared dependency on gitub
+* add fona support for incoming call
+* add state flow for incoming call
+* add support for incoming SMS
+* add support for outgoing SMS
+* change gpio version in FONA.  Don't need to use the one that keypad uses
 
 ### Questions
-Why does application.started_applications show GenStateMachine and not CellStateMachine? <- not a problem?
-
-### TODO:
-* Need to have Keypad trigger state changes
-* Need to have CellStateMachine control fona_modem
-
-* Implement the finite state machine diagram as a GenStateMachine
-
-* Make fona_modem a shared dependency on gitub
 
 ### How should it work?
 * need a button for hanging up.  Physical button or use # on keypad? <- use #
 * need a button to answer incoming calls.  Physical button or use * on keypad? <- use *
 
-* support plug in handset
-* add a speakerphone?
+* Add speakerphone
 * bluetooth handset support or nah?
-* open source fona_modem?  release on hex.pm? <- distant future
-
+* Add physical buttons for volume up/down?
+* Add physical buttons for pick up/hang up?
+* open source fona_modem?  release on hex.pm?

@@ -8,6 +8,8 @@ defmodule NervesCell.CellStateMachine do
   alias FonaModem
   @phone_number_length 10
 
+  @ext_tone_dial_tone 2
+
   def start_link({state, data}) do
     Logger.info("[CellStateMachine Modem] start_link/1")
     GenStateMachine.start_link(__MODULE__, {state, data}, name: __MODULE__)
@@ -62,7 +64,9 @@ defmodule NervesCell.CellStateMachine do
 
     if String.length(data) == @phone_number_length do
       Logger.info("Make phone call to #{data}")
-      result = FonaModem.play_tone("2")
+      result = FonaModem.cancel_ext_tone()
+      Logger.info(result)
+      result = FonaModem.play_tone(digit)
       Logger.info(result)
       {:next_state, :making_phone_call, data}
     else
@@ -90,6 +94,7 @@ defmodule NervesCell.CellStateMachine do
 
   def off_hook_dialtone(:cast, :go_on_hook, data) do
     Logger.info("off hook hanging up")
+    FonaModem.cancel_ext_tone()
     {:next_state, :on_hook, data}
   end
 
@@ -101,6 +106,7 @@ defmodule NervesCell.CellStateMachine do
   #
   def on_hook(:cast, :go_off_hook, data) do
     Logger.info("on hook going off hook")
+    FonaModem.play_ext_tone(@ext_tone_dial_tone)
     {:next_state, :off_hook_dialtone, data}
   end
 
