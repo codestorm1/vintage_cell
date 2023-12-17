@@ -23,17 +23,4 @@ defmodule NervesCell.KeypadDialer do
   def handle_info(:reset, state) do
     {:noreply, %{state | input: ""}}
   end
-
-  @doc """
-  Hello world.
-
-  ## Examples
-
-      iex> NervesCell.hello
-      :world
-
-  """
-  def hello do
-    :worldly_person
-  end
 end

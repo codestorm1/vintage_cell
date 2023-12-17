@@ -70,13 +70,13 @@ Wed Dec 13
 > Also have play_ext_tone for sounds like dial tones, off hook warning, system busy
 
 Fri Dec 15
->
+> ?
 
 ### TODO
-* complete the cycle of making a phone call
+* Revisit the way KeyPad creates a GenServer as the client
+* complete the cycle of making a phone call - with GSM?
 * solder speaker connector
 * Add timeout to get to off hook warning state
-* Revisit the way KeyPad creates a GenServer as the client
 * Need to have Keypad trigger state changes
 * Change casts to calls for state machine to show caller what happened
 * Make fona_modem a shared dependency on gitub
