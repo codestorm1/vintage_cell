@@ -69,15 +69,15 @@ Wed Dec 13
 > Added play_tone function that plays sounds of digits
 > Also have play_ext_tone for sounds like dial tones, off hook warning, system busy
 
-Fri Dec 15
-> ?
+Mon Dec 18
+> Fixed tone playing
+> Pressing * takes the phone off hook, dialing a number works and plays tones.
+> KeyPad Dialer now calls into CellStateMachine, which calls FonaModem
 
 ### TODO
-* Revisit the way KeyPad creates a GenServer as the client
-* complete the cycle of making a phone call - with GSM?
-* solder speaker connector
+* Can't hang up a call
+* Solder speaker connector
 * Add timeout to get to off hook warning state
-* Need to have Keypad trigger state changes
 * Change casts to calls for state machine to show caller what happened
 * Make fona_modem a shared dependency on gitub
 * add fona support for incoming call
@@ -85,6 +85,11 @@ Fri Dec 15
 * add support for incoming SMS
 * add support for outgoing SMS
 * change gpio version in FONA.  Don't need to use the one that keypad uses
+* determine if UART is in sync; if AT commands are responding to the current command
+* reset modem if not in sync? recover somehow
+* if the modem isn't getting synched, do the FONA 5 second reset?
+
+
 
 ### Questions
 
