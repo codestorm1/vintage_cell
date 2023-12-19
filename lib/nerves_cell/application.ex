@@ -16,7 +16,7 @@ defmodule NervesCell.Application do
         # Children for all targets
         # Starts a worker by calling: NervesCell.Worker.start_link(arg)
         # {NervesCell.Worker, arg},
-        # {NervesCell.KeypadDialer, self()},
+        {NervesCell.KeypadDialer, %{}},
         {NervesCell.CellStateMachine, {:on_hook, ""}},
         {FonaModem, %{}}
       ] ++ children(target())

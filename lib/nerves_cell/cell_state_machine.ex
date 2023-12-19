@@ -61,13 +61,14 @@ defmodule NervesCell.CellStateMachine do
   def off_hook_get_digit(:cast, {:digit_dialed, digit}, data) do
     data = data <> digit
     Logger.info("get digit -> got a digit, data is #{data}")
+    result = FonaModem.play_tone(digit)
+    Logger.info(result)
 
     if String.length(data) == @phone_number_length do
       Logger.info("Make phone call to #{data}")
-      result = FonaModem.cancel_ext_tone()
+      result = FonaModem.make_phone_call(data)
       Logger.info(result)
-      result = FonaModem.play_tone(digit)
-      Logger.info(result)
+
       {:next_state, :making_phone_call, data}
     else
       {:keep_state, data}
@@ -89,6 +90,8 @@ defmodule NervesCell.CellStateMachine do
   def off_hook_dialtone(:cast, {:digit_dialed, digit}, data) do
     data = data <> digit
     Logger.info("dialtone -> got a digit, data is #{data}")
+    result = FonaModem.play_tone(digit)
+    Logger.info(result)
     {:next_state, :off_hook_get_digit, data}
   end
 
