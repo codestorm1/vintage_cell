@@ -21,7 +21,7 @@
 > Added a wire to the FONA-Pi board that I'm using for nerves cell - Grounded the FONA to the Pi.
 > Able to reference FonaModem now as a local dependency
 > Able to get the FONA to respond to AT commands
-> Last time it booted, it was able to sync with AT modem commands and responses, although one response was ERROR 
+> Last time it booted, it was able to sync with AT modem commands and responses, although one response was ERROR
 > got FONA to make a call using IEx {:status, pid, _, _} = :sys.get_status(FonaModem)
 
 * Sun Nov 19, 2023
@@ -74,9 +74,18 @@ Mon Dec 18
 > Pressing * takes the phone off hook, dialing a number works and plays tones.
 > KeyPad Dialer now calls into CellStateMachine, which calls FonaModem
 
+Sometime:
+> Soldered speaker connector
+
+Execute minicom -D /dev/ttyS0 (ttyS0 is the serial port of Raspberry Pi 3B/3B+/4B).
+Default baud rate is 115200
+Raspberry Pi 2B/zero, the user serial device number is ttyAMA0, and the Raspberry Pi 3B/3B+/4B serial device number is ttyS0.
+
 ### TODO
 * Can't hang up a call
-* Solder speaker connector
+* explore WaveShare hat
+* Maduino Zero 4G LTE(SIM7600X)?
+* add functions for loudspeaker on/off
 * Add timeout to get to off hook warning state
 * Change casts to calls for state machine to show caller what happened
 * Make fona_modem a shared dependency on gitub
@@ -84,7 +93,7 @@ Mon Dec 18
 * add state flow for incoming call
 * add support for incoming SMS
 * add support for outgoing SMS
-* change gpio version in FONA.  Don't need to use the one that keypad uses
+* change circuits.gpio version in FONA.  Don't need to use the one that keypad uses
 * determine if UART is in sync; if AT commands are responding to the current command
 * reset modem if not in sync? recover somehow
 * if the modem isn't getting synched, do the FONA 5 second reset?
