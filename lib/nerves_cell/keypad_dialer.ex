@@ -5,7 +5,7 @@ defmodule NervesCell.KeypadDialer do
   alias NervesCell.CellStateMachine
 
   require Logger
-  use Keypad, row_pins: [25, 1, 12, 20], col_pins: [18, 23, 24], size: "4x3"
+  use Keypad, row_pins: [25, 6, 12, 20], col_pins: [18, 23, 24], size: "4x3"
 
   @impl Keypad
   def handle_keypress("#", state) do

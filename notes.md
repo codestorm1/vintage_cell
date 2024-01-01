@@ -81,15 +81,20 @@ Execute minicom -D /dev/ttyS0 (ttyS0 is the serial port of Raspberry Pi 3B/3B+/4
 Default baud rate is 115200
 Raspberry Pi 2B/zero, the user serial device number is ttyAMA0, and the Raspberry Pi 3B/3B+/4B serial device number is ttyS0.
 
+Sun Dec 31, 2023
+> Switched to WaveShare hat
+> Figured out the UART to USB jumpers on the Waveshare baord
+> Installed Windows and Mac drivers from https://www.silabs.com/developers/usb-to-uart-bridge-vcp-drivers
+> WaveShare hat is responding to AT commands
+
 ### TODO
 * Can't hang up a call
-* explore WaveShare hat
 * Maduino Zero 4G LTE(SIM7600X)?
 * add functions for loudspeaker on/off
 * Add timeout to get to off hook warning state
 * Change casts to calls for state machine to show caller what happened
 * Make fona_modem a shared dependency on gitub
-* add fona support for incoming call
+* add support for incoming call
 * add state flow for incoming call
 * add support for incoming SMS
 * add support for outgoing SMS
