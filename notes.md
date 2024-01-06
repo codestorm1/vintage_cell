@@ -82,15 +82,21 @@ Default baud rate is 115200
 Raspberry Pi 2B/zero, the user serial device number is ttyAMA0, and the Raspberry Pi 3B/3B+/4B serial device number is ttyS0.
 
 Sun Dec 31, 2023
-> Switched to WaveShare hat
+> Bailed on FONA 3G, 3G service is dying fast
+> Switched to WaveShare 4G hat
 > Figured out the UART to USB jumpers on the Waveshare baord
 > Installed Windows and Mac drivers from https://www.silabs.com/developers/usb-to-uart-bridge-vcp-drivers
 > WaveShare hat is responding to AT commands
+> NervesCell is able to dial, hang up, using WaveShare
+
+Sat Jan 6, 2023
+> Switched CellStateMachine to use calls instead of casts
+>
 
 ### TODO
 * Can't hang up a call
-* Maduino Zero 4G LTE(SIM7600X)?
-* add functions for loudspeaker on/off
+* rename fona_modem to... at_modem?
+* fona modem - add functions for loudspeaker on/off
 * Add timeout to get to off hook warning state
 * Change casts to calls for state machine to show caller what happened
 * Make fona_modem a shared dependency on gitub
@@ -102,8 +108,7 @@ Sun Dec 31, 2023
 * determine if UART is in sync; if AT commands are responding to the current command
 * reset modem if not in sync? recover somehow
 * if the modem isn't getting synched, do the FONA 5 second reset?
-
-
+* Maduino Zero 4G LTE(SIM7600X)?
 
 ### Questions
 
