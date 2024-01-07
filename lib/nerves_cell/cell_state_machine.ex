@@ -49,6 +49,7 @@ defmodule NervesCell.CellStateMachine do
   def making_phone_call({:call, from}, :go_on_hook, _data) do
     data = ""
     Logger.info("get digit -> hang up, data is #{data}")
+    FonaModem.hang_up()
     {:next_state, :on_hook, data, [{:reply, from, data}]}
   end
 

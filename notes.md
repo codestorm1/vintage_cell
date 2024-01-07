@@ -98,7 +98,6 @@ Sat Jan 6, 2023
 * rename fona_modem to... at_modem?
 * fona modem - add functions for loudspeaker on/off
 * Add timeout to get to off hook warning state
-* Change casts to calls for state machine to show caller what happened
 * Make fona_modem a shared dependency on gitub
 * add support for incoming call
 * add state flow for incoming call
@@ -107,7 +106,6 @@ Sat Jan 6, 2023
 * change circuits.gpio version in FONA.  Don't need to use the one that keypad uses
 * determine if UART is in sync; if AT commands are responding to the current command
 * reset modem if not in sync? recover somehow
-* if the modem isn't getting synched, do the FONA 5 second reset?
 * Maduino Zero 4G LTE(SIM7600X)?
 
 ### Questions
