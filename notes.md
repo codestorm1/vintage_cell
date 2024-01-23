@@ -91,24 +91,29 @@ Sun Dec 31, 2023
 
 Sat Jan 6, 2023
 > Switched CellStateMachine to use calls instead of casts
->
+> Fixed hanging up calls - CellStateMachine was missing a call to fona to hang up
 
 ### TODO
-* Can't hang up a call
 * rename fona_modem to... at_modem?
-* fona modem - add functions for loudspeaker on/off
-* Add timeout to get to off hook warning state
 * Make fona_modem a shared dependency on gitub
 * add support for incoming call
 * add state flow for incoming call
 * add support for incoming SMS
 * add support for outgoing SMS
+
 * change circuits.gpio version in FONA.  Don't need to use the one that keypad uses
 * determine if UART is in sync; if AT commands are responding to the current command
 * reset modem if not in sync? recover somehow
 * Maduino Zero 4G LTE(SIM7600X)?
+* fona modem - add functions for loudspeaker on/off (Waveshare HAT has no loudpseaker)
+* Add timeout to get to off hook warning state (can't play that panic tone, no point doing this)
 
-### Questions
+### FONA replacement Features
+* Audio jack or audio output
+* Makes ring sound when call is incoming
+* Play extended tones - dial tone, fast busy
+* Ring indicator pin
+* Network pin
 
 ### How should it work?
 * need a button for hanging up.  Physical button or use # on keypad? <- use #
@@ -119,3 +124,5 @@ Sat Jan 6, 2023
 * Add physical buttons for volume up/down?
 * Add physical buttons for pick up/hang up?
 * open source fona_modem?  release on hex.pm?
+
+ Waveshare: (3GPP TS 27.007, 27.005, and V.25TER command set)
