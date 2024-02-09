@@ -108,6 +108,16 @@ Sat Jan 6, 2023
 * fona modem - add functions for loudspeaker on/off (Waveshare HAT has no loudpseaker)
 * Add timeout to get to off hook warning state (can't play that panic tone, no point doing this)
 
+## Get this thing ready for presentation!
+
+### Vintage phone
+* solve 3 wire problem
+* Waveshare doesn't make a ringing noise for incoming calls
+* ring bell for incoming call
+* Add charger for WaveShare
+* Fit into MonoPhone
+
+
 ### FONA replacement Features
 * Audio jack or audio output
 * Makes ring sound when call is incoming
