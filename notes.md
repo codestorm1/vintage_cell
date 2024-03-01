@@ -89,9 +89,43 @@ Sun Dec 31, 2023
 > WaveShare hat is responding to AT commands
 > NervesCell is able to dial, hang up, using WaveShare
 
-Sat Jan 6, 2023
+Sat Jan 6, 2024
 > Switched CellStateMachine to use calls instead of casts
 > Fixed hanging up calls - CellStateMachine was missing a call to fona to hang up
+
+Feb 9, 2024
+> Updated these notes
+
+Previous to Tue Feb 27, 2024
+> Designed and built a circuit to let a GPIO ring a bell - works great!
+
+## Get this thing ready for presentation!
+
+### Vintage phone
+Tue Feb 27, 2024
+√ write proposal - submitted!
+
+- Add charger for WaveShare - just use an add-on board
+
+Physical:
+* test monophone headset with nokia phone and adapter jack
+* Design and print bigger case to hold waveshare
+* Fit bell and battery
+* Wire and fit everything into MonoPhone
+
+Code:
+* write code to ring bell for incoming call
+* merge code from vintagephone (rotary dialiing) and nerves cell
+
+Bonus:
+* add timeouts in state machine
+* Make the cord work as a USB charger
+
+√ build bell-ringer into a proper PCB
+√ Waveshare doesn't make a ringing noise for incoming calls - ring bell.
+√ build circuit to ring bell from Rasp Pi (breadboarD)
+√ Ordered 2N2222 transistor, 18650 battery with charger and clip. Thanks ChatGPT
+√ solve 3 wire problem - solved! was never a problem?  joining mic and speaker negatives- works
 
 ### TODO
 * rename fona_modem to... at_modem?
@@ -107,15 +141,6 @@ Sat Jan 6, 2023
 * Maduino Zero 4G LTE(SIM7600X)?
 * fona modem - add functions for loudspeaker on/off (Waveshare HAT has no loudpseaker)
 * Add timeout to get to off hook warning state (can't play that panic tone, no point doing this)
-
-## Get this thing ready for presentation!
-
-### Vintage phone
-* solve 3 wire problem
-* Waveshare doesn't make a ringing noise for incoming calls
-* ring bell for incoming call
-* Add charger for WaveShare
-* Fit into MonoPhone
 
 
 ### FONA replacement Features
