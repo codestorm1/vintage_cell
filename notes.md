@@ -108,18 +108,20 @@ Tue Feb 27, 2024
 - Add charger for WaveShare - just use an add-on board
 
 Physical:
-* test monophone headset with nokia phone and adapter jack
+* Test monophone headset with nokia phone and adapter jack
 * Design and print bigger case to hold waveshare
 * Fit bell and battery
 * Wire and fit everything into MonoPhone
 
 Code:
-* write code to ring bell for incoming call
-* merge code from vintagephone (rotary dialiing) and nerves cell
+* Write code to ring bell for incoming call
+* Merge code from vintagephone (rotary dialiing) and nerves cell
 
 Bonus:
-* add timeouts in state machine
+* Add timeouts in state machine
 * Make the cord work as a USB charger
+* Get dial tone and network busy sounds to play
+* Turn fona_modem into AT modem.  Move any params to init method, not config
 
 √ build bell-ringer into a proper PCB
 √ Waveshare doesn't make a ringing noise for incoming calls - ring bell.
