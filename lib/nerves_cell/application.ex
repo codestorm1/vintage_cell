@@ -5,6 +5,9 @@ defmodule NervesCell.Application do
 
   use Application
 
+  @hook_gpio 25
+  @dialer_gpio 23
+
   @impl true
   def start(_type, _args) do
     # See https://hexdocs.pm/elixir/Supervisor.html
@@ -17,6 +20,8 @@ defmodule NervesCell.Application do
         # Starts a worker by calling: NervesCell.Worker.start_link(arg)
         # {NervesCell.Worker, arg},
         {NervesCell.CellStateMachine, {:on_hook, ""}},
+        {NervesCell.RotaryDialServer, {self(), @dialer_gpio}},
+        {NervesCell.PhoneHookServer, {self(), @hook_gpio}},
         {FonaModem, %{}}
       ] ++ children(target())
 

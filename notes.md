@@ -99,27 +99,44 @@ Feb 9, 2024
 Previous to Tue Feb 27, 2024
 > Designed and built a circuit to let a GPIO ring a bell - works great!
 
+Tue Feb 27, 2024
+> write proposal - submitted!
+
+Sat, Mar 2, 2024
+> Pulled out KeypadDialer and Keypad dep, going all in on rotary.  Should be made to be easily swappable with Rotary Dialer
+> Discovered that my 3G service was dead.  Had to order a new SIM card that supports 4G and up.
+
+Sun, Mar 3, 2024
+> Test monophone headset with nokia phone and adapter jack <- done
+> Got Monophone headset hooked up to WaveShare.  
+> The headset is now wired to a plug you can hook into any device that has a 3.5mm jack, including the WaveShare modem.
+
+Wed, Mar 6, 2024
+> Added resistors and wire harness connection to vintage phone.  
+> Added phone_hook_server to nerves cell from vintage cell
+> Tested on/off hook and dialing.  Both are working!
+
 ## Get this thing ready for presentation!
 
 ### Vintage phone
-Tue Feb 27, 2024
-√ write proposal - submitted!
 
 - Add charger for WaveShare - just use an add-on board
 
+Code:
+* Get rotary dialing and hook to work again
+* fona_modem: detect call and let client know
+* nerves_cell: Write code to handle message of incoming call.  Ring bell, change state to incoming_call
+  handle incoming_call_stopped, timeout bell
+
 Physical:
-* Test monophone headset with nokia phone and adapter jack
+* how to attach dialer and hook wires to RPi?
 * Design and print bigger case to hold waveshare
 * Fit bell and battery
 * Wire and fit everything into MonoPhone
 
-Code:
-* Write code to ring bell for incoming call
-* Merge code from vintagephone (rotary dialiing) and nerves cell
-
 Bonus:
-* Add timeouts in state machine
 * Make the cord work as a USB charger
+* Add timeouts in state machine
 * Get dial tone and network busy sounds to play
 * Turn fona_modem into AT modem.  Move any params to init method, not config
 

@@ -17,7 +17,7 @@ defmodule NervesCell.RotaryDialServer do
 
   require Logger
 
-  alias NervesCell.Blinker
+  # alias NervesCell.Blinker
 
   # if a sound comes in faster the the value below, assume it is noise and discard it
   # yes, nanoseconds
@@ -72,29 +72,29 @@ defmodule NervesCell.RotaryDialServer do
           raise "bad pin"
       end
 
-    digit_detected_pin = Application.fetch_env!(:nerves_cell, :digit_detected_pin)
-    noise_detected_pin = Application.fetch_env!(:nerves_cell, :noise_detected_pin)
-    click_detected_pin = Application.fetch_env!(:nerves_cell, :click_detected_pin)
+    # digit_detected_pin = Application.fetch_env!(:nerves_cell, :digit_detected_pin)
+    # noise_detected_pin = Application.fetch_env!(:nerves_cell, :noise_detected_pin)
+    # click_detected_pin = Application.fetch_env!(:nerves_cell, :click_detected_pin)
     # not sure why, but :falling generates way more clicks than :rising
     :ok = Circuits.GPIO.set_interrupts(dial_gpio, :rising)
 
-    {:ok, digit_gpio} = Circuits.GPIO.open(digit_detected_pin, :output)
-    {:ok, noise_gpio} = Circuits.GPIO.open(noise_detected_pin, :output)
-    {:ok, click_gpio} = Circuits.GPIO.open(click_detected_pin, :output)
+    # {:ok, digit_gpio} = Circuits.GPIO.open(digit_detected_pin, :output)
+    # {:ok, noise_gpio} = Circuits.GPIO.open(noise_detected_pin, :output)
+    # {:ok, click_gpio} = Circuits.GPIO.open(click_detected_pin, :output)
 
     # TODO: do this above in open, using options
-    Circuits.GPIO.write(digit_gpio, 0)
-    Circuits.GPIO.write(noise_gpio, 0)
-    Circuits.GPIO.write(click_gpio, 0)
+    # Circuits.GPIO.write(digit_gpio, 0)
+    # Circuits.GPIO.write(noise_gpio, 0)
+    # Circuits.GPIO.write(click_gpio, 0)
     # Logger.info("[Dial Server] turning off digit LED")
 
     {:ok,
      %{
        client_pid: client_pid,
        dial_gpio: dial_gpio,
-       digit_gpio: digit_gpio,
-       noise_gpio: noise_gpio,
-       click_gpio: click_gpio,
+       #  digit_gpio: digit_gpio,
+       #  noise_gpio: noise_gpio,
+       #  click_gpio: click_gpio,
        click_count: 0,
        last_click_time: 0,
        digit_timeout_timer: nil,
@@ -111,19 +111,19 @@ defmodule NervesCell.RotaryDialServer do
         :timeout_digit,
         %{
           client_pid: client_pid,
-          click_count: click_count,
-          digit_gpio: digit_gpio,
-          noise_gpio: noise_gpio,
-          click_gpio: click_gpio
+          click_count: click_count
+          # digit_gpio: digit_gpio,
+          # noise_gpio: noise_gpio,
+          # click_gpio: click_gpio
         } = state
       ) do
     Logger.info("[Dial Server] click count #{click_count}")
     # click_count = click_count - 1
 
     # This signals to the gpio that we're done listening for this digit
-    Circuits.GPIO.write(noise_gpio, 0)
-    Circuits.GPIO.write(click_gpio, 0)
-    Circuits.GPIO.write(digit_gpio, 0)
+    # Circuits.GPIO.write(noise_gpio, 0)
+    # Circuits.GPIO.write(click_gpio, 0)
+    # Circuits.GPIO.write(digit_gpio, 0)
 
     digit =
       case click_count do
@@ -161,21 +161,21 @@ defmodule NervesCell.RotaryDialServer do
   def handle_info(
         {:circuits_gpio, _pin, timestamp, _value},
         %{
-          last_click_time: 0,
-          click_gpio: click_gpio,
-          noise_gpio: noise_gpio,
-          digit_gpio: digit_gpio
+          last_click_time: 0
+          # click_gpio: click_gpio,
+          # noise_gpio: noise_gpio,
+          # digit_gpio: digit_gpio
         } = state
       ) do
     # Logger.info("[Dial Server] GPIO handle info was called")
     # Logger.info("[Dial Server] first click of digit")
 
     # log("first_click", timestamp)
-    Circuits.GPIO.write(noise_gpio, 1)
-    Circuits.GPIO.write(digit_gpio, 1)
-    Circuits.GPIO.write(click_gpio, 1)
+    # Circuits.GPIO.write(noise_gpio, 1)
+    # Circuits.GPIO.write(digit_gpio, 1)
+    # Circuits.GPIO.write(click_gpio, 1)
 
-    Blinker.blink(click_gpio, 200)
+    # Blinker.blink(click_gpio, 200)
 
     # set this output to high, this is the start of listening for a digit
 
@@ -194,9 +194,9 @@ defmodule NervesCell.RotaryDialServer do
         {:circuits_gpio, _pin, timestamp, _value},
         %{
           last_click_time: last_click_time,
-          lowest_time_til_sound: lowest_time_til_sound,
-          noise_gpio: noise_gpio,
-          click_gpio: click_gpio
+          lowest_time_til_sound: lowest_time_til_sound
+          # noise_gpio: noise_gpio,
+          # click_gpio: click_gpio
         } = state
       ) do
     Logger.info("[Dial Server] GPIO handle info was called")
@@ -218,7 +218,7 @@ defmodule NervesCell.RotaryDialServer do
     state =
       if time_gap > @noise_time_ns do
         log("good click", timestamp)
-        Blinker.blink(click_gpio, 200)
+        # Blinker.blink(click_gpio, 200)
 
         Logger.info(
           "[Dial Server] not noise, time since last click: #{time_gap}  lowest: #{state.lowest_time_til_sound}"
@@ -227,7 +227,7 @@ defmodule NervesCell.RotaryDialServer do
         process_click(timestamp, state)
       else
         log("skip noise click", timestamp)
-        Blinker.blink(noise_gpio, 10)
+        # Blinker.blink(noise_gpio, 10)
 
         Logger.info(
           "[Dial Server] skipping noise click, time since last click: #{time_gap}  lowest: #{state.lowest_time_til_sound}"
@@ -256,12 +256,12 @@ defmodule NervesCell.RotaryDialServer do
          timestamp,
          %{
            click_count: click_count,
-           digit_timeout_timer: digit_timeout_timer,
-           click_gpio: click_gpio
+           digit_timeout_timer: digit_timeout_timer
+           #  click_gpio: click_gpio
          } = state
        ) do
     log("got_click", timestamp)
-    Blinker.blink(click_gpio, 20)
+    # Blinker.blink(click_gpio, 20)
 
     state
     |> Map.put(:digit_timeout_timer, reset_timer(digit_timeout_timer))
