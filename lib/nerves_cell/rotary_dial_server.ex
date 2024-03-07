@@ -15,6 +15,8 @@ defmodule NervesCell.RotaryDialServer do
   """
   use GenServer
 
+  alias NervesCell.CellStateMachine
+
   require Logger
 
   # alias NervesCell.Blinker
@@ -110,7 +112,7 @@ defmodule NervesCell.RotaryDialServer do
   def handle_info(
         :timeout_digit,
         %{
-          client_pid: client_pid,
+          # client_pid: client_pid,
           click_count: click_count
           # digit_gpio: digit_gpio,
           # noise_gpio: noise_gpio,
@@ -145,7 +147,8 @@ defmodule NervesCell.RotaryDialServer do
       Logger.warning("[Dial Server] invalid digit not sent")
     else
       Logger.info("[Dial Server] casting message that digit #{digit} was dialed")
-      GenServer.cast(client_pid, {:dialed_digit, digit})
+      # GenServer.cast(client_pid, {:dialed_digit, digit})
+      CellStateMachine.digit_dialed(digit)
     end
 
     state =

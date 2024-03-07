@@ -9,7 +9,7 @@ defmodule NervesCell.PhoneHookServer do
 
   # Callbacks
   require Logger
-
+  alias NervesCell.CellStateMachine
   # if a click comes in faster the the value below, assume it is noise and discard it
   # yes, nanoseconds
 
@@ -66,7 +66,15 @@ defmodule NervesCell.PhoneHookServer do
         # )
         Logger.info("[Hook Server] value: #{value} Hook state: #{hook_state}")
 
-        GenServer.cast(client_pid, hook_state)
+        case hook_state do
+          :onhook ->
+            CellStateMachine.go_on_hook()
+
+          :offhook ->
+            CellStateMachine.go_off_hook()
+        end
+
+        # GenServer.cast(client_pid, hook_state)
 
         state
         |> Map.put(:hook_state, hook_state)
