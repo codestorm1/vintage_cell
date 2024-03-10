@@ -22,7 +22,7 @@ defmodule NervesCell.Application do
         {NervesCell.CellStateMachine, {:on_hook, ""}},
         {NervesCell.RotaryDialServer, {self(), @dialer_gpio}},
         {NervesCell.PhoneHookServer, {self(), @hook_gpio}},
-        {FonaModem, %{}}
+        {WaveshareModem, %{}}
       ] ++ children(target())
 
     Supervisor.start_link(children, opts)

@@ -46,7 +46,7 @@ defmodule NervesCell.PhoneHookServer do
   @impl true
   def handle_info(
         {:circuits_gpio, _pin, timestamp, value},
-        %{last_click_time: last_click_time, client_pid: client_pid} = state
+        %{last_click_time: last_click_time, client_pid: _client_pid} = state
       ) do
     # Logger.info("[Hook Server] GPIO handle info was called with #{value}")
 

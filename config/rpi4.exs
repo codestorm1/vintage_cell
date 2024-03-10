@@ -37,8 +37,8 @@ config :fona_modem,
 # these are inputs for phone hook and rotary dial clicks
 
 config :fona_modem,
-  hook_gpio_pin: gpio_pins[25],
-  dial_gpio_pin: gpio_pins[24],
+  # hook_gpio_pin: gpio_pins[25],
+  # dial_gpio_pin: gpio_pins[23],
   # other_input_pin: gpio_pins[23],
   # these are output pins for LEDs for debugging
   digit_detected_pin: gpio_pins[6],

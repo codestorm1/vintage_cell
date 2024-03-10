@@ -115,6 +115,10 @@ Wed, Mar 6, 2024
 > Added resistors and wire harness connection to vintage phone.  
 > Added phone_hook_server to nerves cell from vintage cell
 > Tested on/off hook and dialing.  Both are working!
+> Get rotary dialing and hook to work again - done, although dialing is spotty now
+> how to attach dialer and hook wires to RPi? - done, hooked up to proto board
+> added JST connecters and pin headers to the bell ringer proto board, for dial/hook connectors
+
 
 ## Get this thing ready for presentation!
 
@@ -123,13 +127,13 @@ Wed, Mar 6, 2024
 - Add charger for WaveShare - just use an add-on board
 
 Code:
-* Get rotary dialing and hook to work again
+* get the volume up
+* dialing detection is off, fix it
 * fona_modem: detect call and let client know
 * nerves_cell: Write code to handle message of incoming call.  Ring bell, change state to incoming_call
   handle incoming_call_stopped, timeout bell
 
 Physical:
-* how to attach dialer and hook wires to RPi?
 * Design and print bigger case to hold waveshare
 * Fit bell and battery
 * Wire and fit everything into MonoPhone
@@ -139,7 +143,8 @@ Bonus:
 * Add timeouts in state machine
 * Get dial tone and network busy sounds to play
 * Turn fona_modem into AT modem.  Move any params to init method, not config
-
+* put state into structs
+  
 √ build bell-ringer into a proper PCB
 √ Waveshare doesn't make a ringing noise for incoming calls - ring bell.
 √ build circuit to ring bell from Rasp Pi (breadboarD)
