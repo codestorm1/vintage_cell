@@ -19,10 +19,10 @@ defmodule NervesCell.Application do
         # Children for all targets
         # Starts a worker by calling: NervesCell.Worker.start_link(arg)
         # {NervesCell.Worker, arg},
+        {WaveshareModem, %{}},
         {NervesCell.CellStateMachine, {:on_hook, ""}},
         {NervesCell.RotaryDialServer, {self(), @dialer_gpio}},
-        {NervesCell.PhoneHookServer, {self(), @hook_gpio}},
-        {WaveshareModem, %{}}
+        {NervesCell.PhoneHookServer, {self(), @hook_gpio}}
       ] ++ children(target())
 
     Supervisor.start_link(children, opts)

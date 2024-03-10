@@ -21,6 +21,8 @@ defmodule NervesCell.CellStateMachine do
       "[CellStateMachine Modem] init.  pid: #{inspect(self())} init_state: #{inspect(state)} data: #{inspect(data)}"
     )
 
+    WaveshareModem.register_ring_indicator(self())
+
     {:ok, state, data}
   end
 
@@ -117,5 +119,20 @@ defmodule NervesCell.CellStateMachine do
 
   def on_hook({:call, from}, _action, _data) do
     {:keep_state_and_data, [{:reply, from, {:error, :invalid_state_transition}}]}
+  end
+
+  def on_hook(:info, {:incoming_ring, true}, data) do
+    Logger.info("on hook going to incoming RING!")
+    {:next_state, :incoming_ring, data, :ok}
+  end
+
+  def on_hook(:info, {:incoming_ring, false}, _data) do
+    Logger.info("on hook RING ending")
+    :keep_state_and_data
+  end
+
+  def incoming_ring(:info, {:incoming_ring, false}, data) do
+    Logger.info("incoming RING going to on hook")
+    {:next_state, :on_hook, data, :ok}
   end
 end

@@ -127,6 +127,7 @@ Wed, Mar 6, 2024
 - Add charger for WaveShare - just use an add-on board
 
 Code:
+* invert the control - only one module should reference the state machine.  The GenServers need to pass messages not call fns.  Add a primary module that controls the FSM
 * get the volume up
 * dialing detection is off, fix it
 * fona_modem: detect call and let client know

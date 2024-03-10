@@ -46,7 +46,7 @@ config :fona_modem,
   noise_detected_pin: gpio_pins[26],
   # FONA pins
   key_pin: gpio_pins[5],
-  ring_indicator_pin: gpio_pins[22],
+  ring_indicator_pin: gpio_pins[21],
   power_status_pin: gpio_pins[27],
   network_status_pin: gpio_pins[17],
   # not hooked up yet, for hanging up phone
