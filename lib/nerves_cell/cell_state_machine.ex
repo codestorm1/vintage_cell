@@ -8,8 +8,6 @@ defmodule NervesCell.CellStateMachine do
   alias WaveshareModem
   @phone_number_length 10
 
-  # @ext_tone_dial_tone 2
-
   def start_link({state, data}) do
     Logger.info("[CellStateMachine Modem] start_link/1")
     GenStateMachine.start_link(__MODULE__, {state, data}, name: __MODULE__)
@@ -45,9 +43,6 @@ defmodule NervesCell.CellStateMachine do
 
   # Server Callbacks
   #
-
-  # making_phone_call state
-  #
   def making_phone_call({:call, from}, :go_on_hook, _data) do
     data = ""
     Logger.info("get digit -> hang up, data is #{data}")
@@ -59,8 +54,6 @@ defmodule NervesCell.CellStateMachine do
     {:keep_state_and_data, [{:reply, from, {:error, :invalid_state_transition}}]}
   end
 
-  # off_hook_get_digit state
-  #
   def off_hook_get_digit({:call, from}, {:digit_dialed, digit}, data) do
     data = data <> digit
     Logger.info("get digit -> got a digit, data is #{data}")
@@ -88,8 +81,6 @@ defmodule NervesCell.CellStateMachine do
     {:keep_state_and_data, [{:reply, from, {:error, :invalid_state_transition}}]}
   end
 
-  # off_hook_dialtone state
-  #
   def off_hook_dialtone({:call, from}, {:digit_dialed, digit}, data) do
     data = data <> digit
     Logger.info("dialtone -> got a digit, data is #{data}")
@@ -100,7 +91,6 @@ defmodule NervesCell.CellStateMachine do
 
   def off_hook_dialtone({:call, from}, :go_on_hook, data) do
     Logger.info("off hook hanging up")
-    # WaveshareModem.cancel_ext_tone()
     {:next_state, :on_hook, data, [{:reply, from, :ok}]}
   end
 
@@ -108,31 +98,32 @@ defmodule NervesCell.CellStateMachine do
     {:keep_state_and_data, [{:reply, from, {:error, :invalid_state_transition}}]}
   end
 
-  # on_hook state
-  #
   def on_hook({:call, from}, :go_off_hook, data) do
+    # Would play dialtone here, not supported by SIM7600
     Logger.info("on hook going off hook")
-    # no ext tone
-    # WaveshareModem.play_ext_tone(@ext_tone_dial_tone)
     {:next_state, :off_hook_dialtone, data, [{:reply, from, :ok}]}
   end
 
-  def on_hook({:call, from}, _action, _data) do
+  def on_hook({:call, from}, action, _data) do
+    Logger.warning("onhook CATCHALL called.  action: #{inspect(action)}")
     {:keep_state_and_data, [{:reply, from, {:error, :invalid_state_transition}}]}
   end
 
   def on_hook(:info, {:incoming_ring, true}, data) do
-    Logger.info("on hook going to incoming RING!")
-    {:next_state, :incoming_ring, data, :ok}
+    Logger.info("RING!")
+    {:next_state, :incoming_ring, data}
   end
 
   def on_hook(:info, {:incoming_ring, false}, _data) do
-    Logger.info("on hook RING ending")
     :keep_state_and_data
   end
 
   def incoming_ring(:info, {:incoming_ring, false}, data) do
-    Logger.info("incoming RING going to on hook")
-    {:next_state, :on_hook, data, :ok}
+    {:next_state, :on_hook, data}
+  end
+
+  def incoming_ring(:info, incoming, _data) do
+    Logger.warning("INFO CATCHALL incoming: #{inspect(incoming)}")
+    :keep_state_and_data
   end
 end

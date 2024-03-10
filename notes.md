@@ -119,6 +119,11 @@ Wed, Mar 6, 2024
 > how to attach dialer and hook wires to RPi? - done, hooked up to proto board
 > added JST connecters and pin headers to the bell ringer proto board, for dial/hook connectors
 
+Sat, Mar 9, 2024
+> Detecting incoming calls.  CellStateMachine registers to get incoming_ring events from the WaveshareModem and changes state accordingly
+
+Sun, Mar 10, 2024
+> ?
 
 ## Get this thing ready for presentation!
 
@@ -127,12 +132,12 @@ Wed, Mar 6, 2024
 - Add charger for WaveShare - just use an add-on board
 
 Code:
-* invert the control - only one module should reference the state machine.  The GenServers need to pass messages not call fns.  Add a primary module that controls the FSM
 * get the volume up
 * dialing detection is off, fix it
-* fona_modem: detect call and let client know
-* nerves_cell: Write code to handle message of incoming call.  Ring bell, change state to incoming_call
-  handle incoming_call_stopped, timeout bell
+√ fona_modem: detect call and let client know
+* nerves_cell: Write code to handle message of incoming call.  Ring bell, change state to incoming_ring
+  handle incoming_ring_stopped, timeout bell
+
 
 Physical:
 * Design and print bigger case to hold waveshare
@@ -151,12 +156,12 @@ Bonus:
 √ build circuit to ring bell from Rasp Pi (breadboarD)
 √ Ordered 2N2222 transistor, 18650 battery with charger and clip. Thanks ChatGPT
 √ solve 3 wire problem - solved! was never a problem?  joining mic and speaker negatives- works
+√ add state flow for incoming call
 
 ### TODO
 * rename fona_modem to... at_modem?
 * Make fona_modem a shared dependency on gitub
 * add support for incoming call
-* add state flow for incoming call
 * add support for incoming SMS
 * add support for outgoing SMS
 
