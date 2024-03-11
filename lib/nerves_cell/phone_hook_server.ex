@@ -7,12 +7,11 @@ defmodule NervesCell.PhoneHookServer do
   # hook_state: do we even need to save this?
   # last_click_time: (remove noise)
 
-  # Callbacks
   require Logger
   alias NervesCell.CellStateMachine
+
   # if a click comes in faster the the value below, assume it is noise and discard it
   # yes, nanoseconds
-
   @noise_time_ns 50_000_000
 
   def start_link({client_pid, pin}) do
@@ -26,7 +25,7 @@ defmodule NervesCell.PhoneHookServer do
 
   # need to start a process that sets up the interrupts on the pins
 
-  @impl true
+  @impl GenServer
   @spec init({any, non_neg_integer}) ::
           {:ok, %{client_pid: any, hook_gpio: reference, last_click_time: 0}}
   def init({client_pid, pin}) do
@@ -43,7 +42,7 @@ defmodule NervesCell.PhoneHookServer do
   defp gpio_value_to_hook_state(0), do: :offhook
 
   # handle_info(msg, state)
-  @impl true
+  @impl GenServer
   def handle_info(
         {:circuits_gpio, _pin, timestamp, value},
         %{last_click_time: last_click_time, client_pid: _client_pid} = state
@@ -88,7 +87,7 @@ defmodule NervesCell.PhoneHookServer do
     {:noreply, state}
   end
 
-  @impl true
+  @impl GenServer
   def handle_info(message, state) do
     Logger.error("[Hook Server] catchall handle_info was called")
     Logger.info("message: #{inspect(message)}  state: #{inspect(state)}")

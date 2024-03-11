@@ -5,6 +5,8 @@ defmodule NervesCell.CellStateMachine do
   use GenStateMachine, callback_mode: :state_functions
 
   require Logger
+
+  alias NervesCell.BellServer
   alias WaveshareModem
   @phone_number_length 10
 
@@ -43,15 +45,20 @@ defmodule NervesCell.CellStateMachine do
 
   # Server Callbacks
   #
-  def making_phone_call({:call, from}, :go_on_hook, _data) do
+  def active_voice_call({:call, from}, :go_on_hook, _data) do
     data = ""
     Logger.info("get digit -> hang up, data is #{data}")
     WaveshareModem.hang_up()
     {:next_state, :on_hook, data, [{:reply, from, data}]}
   end
 
-  def making_phone_call({:call, from}, _action, _data) do
+  def active_voice_call({:call, from}, _action, _data) do
     {:keep_state_and_data, [{:reply, from, {:error, :invalid_state_transition}}]}
+  end
+
+  def active_voice_call(:info, {:incoming_ring, _value}, _data) do
+    Logger.warning("phone ringing after call was answered")
+    :keep_state_and_data
   end
 
   def off_hook_get_digit({:call, from}, {:digit_dialed, digit}, data) do
@@ -65,7 +72,7 @@ defmodule NervesCell.CellStateMachine do
       result = WaveshareModem.make_phone_call(data)
       Logger.info(result)
 
-      {:next_state, :making_phone_call, data, [{:reply, from, :ok}]}
+      {:next_state, :active_voice_call, data, [{:reply, from, :ok}]}
     else
       {:keep_state, data, [{:reply, from, :ok}]}
     end
@@ -111,6 +118,7 @@ defmodule NervesCell.CellStateMachine do
 
   def on_hook(:info, {:incoming_ring, true}, data) do
     Logger.info("RING!")
+    BellServer.ring_bell()
     {:next_state, :incoming_ring, data}
   end
 
@@ -119,11 +127,19 @@ defmodule NervesCell.CellStateMachine do
   end
 
   def incoming_ring(:info, {:incoming_ring, false}, data) do
+    BellServer.stop_bell()
     {:next_state, :on_hook, data}
   end
 
   def incoming_ring(:info, incoming, _data) do
     Logger.warning("INFO CATCHALL incoming: #{inspect(incoming)}")
     :keep_state_and_data
+  end
+
+  def incoming_ring({:call, from}, :go_off_hook, data) do
+    # answer the phone
+    Logger.info("lifting hook to answer incoming call")
+    :ok = WaveshareModem.answer_call()
+    {:next_state, :active_voice_call, data, [{:reply, from, :ok}]}
   end
 end

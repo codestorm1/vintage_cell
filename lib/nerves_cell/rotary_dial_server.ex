@@ -59,7 +59,7 @@ defmodule NervesCell.RotaryDialServer do
     GenServer.start_link(__MODULE__, {client_pid, pin}, name: DialServer)
   end
 
-  @impl true
+  @impl GenServer
   def init({client_pid, pin}) do
     Logger.info("[Dial Server] init #{pin}")
 
@@ -104,7 +104,7 @@ defmodule NervesCell.RotaryDialServer do
      }}
   end
 
-  @impl true
+  @impl GenServer
   @doc """
   When there haven't been any clicks in a while, interperet the digit to be complete and send it to the client_pid
   Example: When there have been 5 clicks in a row, and then a pause, this is interpereted as dialing a 5
@@ -160,7 +160,7 @@ defmodule NervesCell.RotaryDialServer do
     {:noreply, state}
   end
 
-  @impl true
+  @impl GenServer
   def handle_info(
         {:circuits_gpio, _pin, timestamp, _value},
         %{
@@ -192,7 +192,7 @@ defmodule NervesCell.RotaryDialServer do
     {:noreply, state}
   end
 
-  @impl true
+  @impl GenServer
   def handle_info(
         {:circuits_gpio, _pin, timestamp, _value},
         %{
@@ -244,7 +244,7 @@ defmodule NervesCell.RotaryDialServer do
     {:noreply, state}
   end
 
-  @impl true
+  @impl GenServer
   def handle_info(message, state) do
     Logger.error("[Dial Server] catchall handle_info was called")
     Logger.info("message: #{inspect(message)}  state: #{inspect(state)}")

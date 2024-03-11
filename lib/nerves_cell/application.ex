@@ -7,6 +7,7 @@ defmodule NervesCell.Application do
 
   @hook_gpio 25
   @dialer_gpio 23
+  @bell_gpio 18
 
   @impl true
   def start(_type, _args) do
@@ -20,6 +21,7 @@ defmodule NervesCell.Application do
         # Starts a worker by calling: NervesCell.Worker.start_link(arg)
         # {NervesCell.Worker, arg},
         {WaveshareModem, %{}},
+        {NervesCell.BellServer, @bell_gpio},
         {NervesCell.CellStateMachine, {:on_hook, ""}},
         {NervesCell.RotaryDialServer, {self(), @dialer_gpio}},
         {NervesCell.PhoneHookServer, {self(), @hook_gpio}}

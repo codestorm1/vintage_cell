@@ -172,7 +172,6 @@ Bonus:
 * fona modem - add functions for loudspeaker on/off (Waveshare HAT has no loudpseaker)
 * Add timeout to get to off hook warning state (can't play that panic tone, no point doing this)
 
-
 ### FONA replacement Features
 * Audio jack or audio output
 * Makes ring sound when call is incoming
@@ -180,10 +179,9 @@ Bonus:
 * Ring indicator pin
 * Network pin
 
-### How should it work?
+### How keypad based phone could work
 * need a button for hanging up.  Physical button or use # on keypad? <- use #
 * need a button to answer incoming calls.  Physical button or use * on keypad? <- use *
-
 * Add speakerphone
 * bluetooth handset support or nah?
 * Add physical buttons for volume up/down?
