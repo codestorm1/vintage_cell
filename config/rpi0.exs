@@ -40,8 +40,9 @@ config :fona_modem,
   # hook_gpio_pin: gpio_pins[25],
   # dial_gpio_pin: gpio_pins[23],
   # other_input_pin: gpio_pins[23],
-  # these are output pins for LEDs for debugging
   bell_ringer_pin: gpio_pins[18],
+
+  # these are output pins for LEDs for debugging
   digit_detected_pin: gpio_pins[6],
   click_detected_pin: gpio_pins[16],
   noise_detected_pin: gpio_pins[26],

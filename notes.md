@@ -123,7 +123,22 @@ Sat, Mar 9, 2024
 > Detecting incoming calls.  CellStateMachine registers to get incoming_ring events from the WaveshareModem and changes state accordingly
 
 Sun, Mar 10, 2024
-> ?
+> nerves_cell: Write code to handle message of incoming call.  Ring bell, change state to incoming_ring
+  handle incoming_ring_stopped, timeout bell <- done
+> Got the ringing figured out using the RI pin as a GPIO input
+> The ring happens, 4 seconds pass, and it stops ringing/starts ringing again.  The timing works out with a 2 second ring/2 second pause. 
+> Got actual incoming calls to ring the bell and picking up the phone answers the call
+
+Mon, Mar 11, 2024
+> Didn't get a spot at NervesConf2024
+> Maybe do YouTube
+
+Thu May 16, 2024
+> 2 months passed? Mostly worked on 3D printed MonoPhone/WaveShare case
+> Tested phone inside MonoPhone, built by Intel Mac.  Modem wasn't responding, going back to ARM mac.
+> Some code hadn't been checked in, maybe issue was repo being out of date.
+
+√ fona_modem: detect call and let client know
 
 ## Get this thing ready for presentation!
 
@@ -132,15 +147,10 @@ Sun, Mar 10, 2024
 - Add charger for WaveShare - just use an add-on board
 
 Code:
-* get the volume up
-* dialing detection is off, fix it
-√ fona_modem: detect call and let client know
-* nerves_cell: Write code to handle message of incoming call.  Ring bell, change state to incoming_ring
-  handle incoming_ring_stopped, timeout bell
-
+* get the volume up - check out the modem's WaveSahre wiki
+* dialing detection is off, fix it - (maybe only when not pausing between digits?)
 
 Physical:
-* Design and print bigger case to hold waveshare
 * Fit bell and battery
 * Wire and fit everything into MonoPhone
 
@@ -150,7 +160,9 @@ Bonus:
 * Get dial tone and network busy sounds to play
 * Turn fona_modem into AT modem.  Move any params to init method, not config
 * put state into structs
-  
+* support serial port incoming call detection (the Hat B version has no RI pin)
+
+√ Design and print bigger case to hold waveshare
 √ build bell-ringer into a proper PCB
 √ Waveshare doesn't make a ringing noise for incoming calls - ring bell.
 √ build circuit to ring bell from Rasp Pi (breadboarD)
@@ -189,3 +201,5 @@ Bonus:
 * open source fona_modem?  release on hex.pm?
 
  Waveshare: (3GPP TS 27.007, 27.005, and V.25TER command set)
+
+Bell mount size 94.53mm x 63.74
