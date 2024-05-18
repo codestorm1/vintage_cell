@@ -31,12 +31,12 @@ gpio_pins = %{
   27 => 27
 }
 
-config :fona_modem,
+config :waveshare_modem,
   uart_name: "ttyS0"
 
 # these are inputs for phone hook and rotary dial clicks
 
-config :fona_modem,
+config :waveshare_modem,
   # hook_gpio_pin: gpio_pins[25],
   # dial_gpio_pin: gpio_pins[23],
   # other_input_pin: gpio_pins[23],
