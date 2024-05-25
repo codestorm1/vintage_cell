@@ -31,6 +31,8 @@ gpio_pins = %{
   27 => 27
 }
 
+config :nerves, :erlinit, ctty: "ttyS0"
+
 config :waveshare_modem,
   uart_name: "ttyS0"
 

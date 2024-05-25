@@ -138,30 +138,33 @@ Thu May 16, 2024
 > Tested phone inside MonoPhone, built by Intel Mac.  Modem wasn't responding, going back to ARM mac.
 > Some code hadn't been checked in, maybe issue was repo being out of date.
 
-√ fona_modem: detect call and let client know
+Sat May 25, 2024
+> Got accepted to ElixirConf!
+> Latest 3D print of case looks good to go
 
 ## Get this thing ready for presentation!
 
 ### Vintage phone
 
-- Add charger for WaveShare - just use an add-on board
-
 Code:
+* make use of D6 pin to turn modem on and off
 * get the volume up - check out the modem's WaveSahre wiki
 * dialing detection is off, fix it - (maybe only when not pausing between digits?)
 
 Physical:
-* Fit bell and battery
-* Wire and fit everything into MonoPhone
 
 Bonus:
-* Make the cord work as a USB charger
 * Add timeouts in state machine
 * Get dial tone and network busy sounds to play
 * Turn fona_modem into AT modem.  Move any params to init method, not config
 * put state into structs
 * support serial port incoming call detection (the Hat B version has no RI pin)
 
+√ Wire and fit everything into MonoPhone
+√ fona_modem: detect call and let client know
+√ Fit bell and battery
+√ Make the cord work as a USB charger
+√ Add charger for WaveShare - just use an add-on board
 √ Design and print bigger case to hold waveshare
 √ build bell-ringer into a proper PCB
 √ Waveshare doesn't make a ringing noise for incoming calls - ring bell.
@@ -169,11 +172,11 @@ Bonus:
 √ Ordered 2N2222 transistor, 18650 battery with charger and clip. Thanks ChatGPT
 √ solve 3 wire problem - solved! was never a problem?  joining mic and speaker negatives- works
 √ add state flow for incoming call
+√ add support for incoming call
 
 ### TODO
 * rename fona_modem to... at_modem?
 * Make fona_modem a shared dependency on gitub
-* add support for incoming call
 * add support for incoming SMS
 * add support for outgoing SMS
 
