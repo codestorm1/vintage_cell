@@ -41,7 +41,10 @@ if keys == [],
     """)
 
 config :nerves_ssh,
-  authorized_keys: Enum.map(keys, &File.read!/1)
+  authorized_keys: Enum.map(keys, &File.read!/1),
+  user_passwords: [
+    {"bryan", "bryan"}
+  ]
 
 # Configure the network using vintage_net
 #
