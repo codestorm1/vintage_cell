@@ -42,7 +42,7 @@ config :waveshare_modem,
   # hook_gpio_pin: gpio_pins[25],
   # dial_gpio_pin: gpio_pins[23],
   # other_input_pin: gpio_pins[23],
-  bell_ringer_pin: gpio_pins[18],
+  bell_ringer_pin: gpio_pins[20],
 
   # these are output pins for LEDs for debugging
   digit_detected_pin: gpio_pins[6],
