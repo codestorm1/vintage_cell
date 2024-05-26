@@ -7,7 +7,7 @@ defmodule NervesCell.Application do
 
   @hook_gpio 25
   @dialer_gpio 23
-  @bell_gpio 18
+  @bell_gpio 20
 
   @impl true
   def start(_type, _args) do
