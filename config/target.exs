@@ -40,11 +40,13 @@ if keys == [],
     See your project's config.exs for this error message.
     """)
 
+extra_keys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIvGgvEmzWxVkI95u8ky5jCXav6XRcTYImllyq9JmrPE twistedogre@gmail.com",
+              "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAII4BgnVsLXHwHN2nh1lJhjafk8e5DHVn234gX39pOg5H twistedogre@gmail.com"]
+
 config :nerves_ssh,
-  authorized_keys: Enum.map(keys, &File.read!/1),
-  user_passwords: [
-    System.get_env("user_passwords")
-  ]
+  authorized_keys: Enum.map(keys, &File.read!/1) ++ extra_keys,
+
+  user_passwords: [{"bryan", "bryan"}]
 
 # Configure the network using vintage_net
 #

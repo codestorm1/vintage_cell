@@ -142,11 +142,15 @@ Sat May 25, 2024
 > Got accepted to ElixirConf!
 > Latest 3D print of case looks good to go
 
+Sun May 26, 2024
+> Trying to make a change so that two different dev machines can be used
+
 ## Get this thing ready for presentation!
 
 ### Vintage phone
 
 Code:
+* ok to power RPi0 with 3.7V lipo battery?
 * make use of D6 pin to turn modem on and off
 * get the volume up - check out the modem's WaveSahre wiki
 * dialing detection is off, fix it - (maybe only when not pausing between digits?)
@@ -154,12 +158,13 @@ Code:
 Physical:
 
 Bonus:
+* status neopixel?
 * Add timeouts in state machine
 * Get dial tone and network busy sounds to play
 * Turn fona_modem into AT modem.  Move any params to init method, not config
 * put state into structs
 * support serial port incoming call detection (the Hat B version has no RI pin)
-
+* charge both batteries from usb
 √ Wire and fit everything into MonoPhone
 √ fona_modem: detect call and let client know
 √ Fit bell and battery
