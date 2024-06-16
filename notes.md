@@ -144,24 +144,34 @@ Sat May 25, 2024
 
 Sun May 26, 2024
 > Trying to make a change so that two different dev machines can be used
+> Used multiple authorized keys, that worked.
+
+Fri May 31, 2024
+> tightened up wiring a bit, ordered wire clips
+
+* bell isn't ringing for incoming call
 
 ## Get this thing ready for presentation!
 
 ### Vintage phone
 
 Code:
-* ok to power RPi0 with 3.7V lipo battery?
+* make some other tones instead of dial tone
 * make use of D6 pin to turn modem on and off
 * get the volume up - check out the modem's WaveSahre wiki
 * dialing detection is off, fix it - (maybe only when not pausing between digits?)
 
 Physical:
+* pin arrangement is too fragile, use right angle male headers
+* tighten up wiring inside
+* ok to power RPi0 with 3.7V lipo battery?
 
 Bonus:
 * status neopixel?
 * Add timeouts in state machine
 * Get dial tone and network busy sounds to play
 * Turn fona_modem into AT modem.  Move any params to init method, not config
+* livebook?
 * put state into structs
 * support serial port incoming call detection (the Hat B version has no RI pin)
 * charge both batteries from usb
@@ -180,12 +190,11 @@ Bonus:
 √ add support for incoming call
 
 ### TODO
-* rename fona_modem to... at_modem?
+* rename fona_modem to... at_modem? waveshare_modem now
 * Make fona_modem a shared dependency on gitub
 * add support for incoming SMS
 * add support for outgoing SMS
 
-* change circuits.gpio version in FONA.  Don't need to use the one that keypad uses
 * determine if UART is in sync; if AT commands are responding to the current command
 * reset modem if not in sync? recover somehow
 * Maduino Zero 4G LTE(SIM7600X)?
@@ -200,6 +209,7 @@ Bonus:
 * Network pin
 
 ### How keypad based phone could work
+* change circuits.gpio version in FONA.  Don't need to use the one that keypad uses
 * need a button for hanging up.  Physical button or use # on keypad? <- use #
 * need a button to answer incoming calls.  Physical button or use * on keypad? <- use *
 * Add speakerphone
@@ -208,6 +218,6 @@ Bonus:
 * Add physical buttons for pick up/hang up?
 * open source fona_modem?  release on hex.pm?
 
- Waveshare: (3GPP TS 27.007, 27.005, and V.25TER command set)
+Waveshare: (3GPP TS 27.007, 27.005, and V.25TER command set)
 
 Bell mount size 94.53mm x 63.74
