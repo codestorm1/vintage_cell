@@ -7,8 +7,20 @@ defmodule NervesCell.CellStateMachine do
   require Logger
 
   alias NervesCell.BellServer
+  alias NervesCell.LEDServer
+  alias Blinkchain.Color
+
   alias WaveshareModem
   @phone_number_length 10
+  @state_led 5
+  @color_on_hook Color.parse("#9400D3")
+  @color_off_hook Color.parse("#9400D3")
+  @color_incoming_ring Color.parse("#4B0082")
+  @color_waiting_for_digit Color.parse("#FFFF00")
+  @color_active_call Color.parse("#0000FF")
+  # Color.parse("#00FF00"),
+  # Color.parse("#FF7F00"),
+  # Color.parse("#FF0000")
 
   def start_link({state, data}) do
     Logger.info("[CellStateMachine Modem] start_link/1")
@@ -21,6 +33,7 @@ defmodule NervesCell.CellStateMachine do
       "[CellStateMachine Modem] init.  pid: #{inspect(self())} init_state: #{inspect(state)} data: #{inspect(data)}"
     )
 
+    LEDServer.set_color(@state_led, @color_on_hook)
     WaveshareModem.register_ring_indicator(self())
 
     {:ok, state, data}
@@ -49,6 +62,7 @@ defmodule NervesCell.CellStateMachine do
     data = ""
     Logger.info("get digit -> hang up, data is #{data}")
     WaveshareModem.hang_up()
+    LEDServer.set_color(@state_led, @color_on_hook)
     {:next_state, :on_hook, data, [{:reply, from, data}]}
   end
 
@@ -71,6 +85,7 @@ defmodule NervesCell.CellStateMachine do
       Logger.info("Make phone call to #{data}")
       result = WaveshareModem.make_phone_call(data)
       Logger.info(result)
+      LEDServer.set_color(@state_led, @color_active_call)
 
       {:next_state, :active_voice_call, data, [{:reply, from, :ok}]}
     else
@@ -81,6 +96,8 @@ defmodule NervesCell.CellStateMachine do
   def off_hook_get_digit({:call, from}, :go_on_hook, _data) do
     data = ""
     Logger.info("get digit -> hang up, data is #{data}")
+    LEDServer.set_color(@state_led, @color_on_hook)
+
     {:next_state, :on_hook, data, [{:reply, from, :ok}]}
   end
 
@@ -93,11 +110,15 @@ defmodule NervesCell.CellStateMachine do
     Logger.info("dialtone -> got a digit, data is #{data}")
     result = WaveshareModem.play_tone(digit)
     Logger.info(result)
+    LEDServer.set_color(@state_led, @color_waiting_for_digit)
+
     {:next_state, :off_hook_get_digit, data, [{:reply, from, :ok}]}
   end
 
   def off_hook_dialtone({:call, from}, :go_on_hook, data) do
     Logger.info("off hook hanging up")
+    LEDServer.set_color(@state_led, @color_on_hook)
+
     {:next_state, :on_hook, data, [{:reply, from, :ok}]}
   end
 
@@ -108,6 +129,8 @@ defmodule NervesCell.CellStateMachine do
   def on_hook({:call, from}, :go_off_hook, data) do
     # Would play dialtone here, not supported by SIM7600
     Logger.info("on hook going off hook")
+    LEDServer.set_color(@state_led, @color_off_hook)
+
     {:next_state, :off_hook_dialtone, data, [{:reply, from, :ok}]}
   end
 
@@ -119,6 +142,8 @@ defmodule NervesCell.CellStateMachine do
   def on_hook(:info, {:incoming_ring, true}, data) do
     Logger.info("RING!")
     BellServer.ring_bell()
+    LEDServer.set_color(@state_led, @color_incoming_ring)
+
     {:next_state, :incoming_ring, data}
   end
 
@@ -128,6 +153,7 @@ defmodule NervesCell.CellStateMachine do
 
   def incoming_ring(:info, {:incoming_ring, false}, data) do
     BellServer.stop_bell()
+    LEDServer.set_color(@state_led, @color_on_hook)
     {:next_state, :on_hook, data}
   end
 
@@ -140,6 +166,8 @@ defmodule NervesCell.CellStateMachine do
     # answer the phone
     Logger.info("lifting hook to answer incoming call")
     :ok = WaveshareModem.answer_call()
+    LEDServer.set_color(@state_led, @color_active_call)
+
     {:next_state, :active_voice_call, data, [{:reply, from, :ok}]}
   end
 
