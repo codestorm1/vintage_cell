@@ -149,6 +149,16 @@ Sun May 26, 2024
 Fri May 31, 2024
 > tightened up wiring a bit, ordered wire clips
 
+Previous
+> Made sample projects neo and pixel to try out blinkchain package for lighting up neopixels
+> Got a sample project to work, lighting up the NeoPixel strip in different colors
+> There are crashes the need looking into (Blinkchain.HAL timeout)
+
+Sat June 15, 2024
+> Glued Neopixel strip into MonoPhone, hooked up connections to RPi
+> Added config for neopixels/blinkchain
+> Added LEDServer genserver to manage neopixels
+
 * bell isn't ringing for incoming call
 
 ## Get this thing ready for presentation!

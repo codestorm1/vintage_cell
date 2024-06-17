@@ -24,7 +24,8 @@ defmodule NervesCell.Application do
         {NervesCell.BellServer, @bell_gpio},
         {NervesCell.CellStateMachine, {:on_hook, ""}},
         {NervesCell.RotaryDialServer, {self(), @dialer_gpio}},
-        {NervesCell.PhoneHookServer, {self(), @hook_gpio}}
+        {NervesCell.PhoneHookServer, {self(), @hook_gpio}},
+        {NervesCell.LEDServer, nil}
       ] ++ children(target())
 
     Supervisor.start_link(children, opts)

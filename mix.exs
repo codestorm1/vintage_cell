@@ -72,7 +72,8 @@ defmodule NervesCell.MixProject do
       {:nerves_system_mangopi_mq_pro, "~> 0.6", runtime: false, targets: :mangopi_mq_pro},
       # {:fona_modem, git: "git@github.com:codestorm1/fona_modem.git", tag: "v0.1.0"}
       {:waveshare_modem, path: "../waveshare_modem"},
-      {:gen_state_machine, "~> 3.0"}
+      {:gen_state_machine, "~> 3.0"},
+      {:blinkchain, "~> 1.0"}
     ]
   end
 
