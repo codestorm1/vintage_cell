@@ -223,10 +223,6 @@ defmodule NervesCell.RotaryDialServer do
         log("good click", timestamp)
         # Blinker.blink(click_gpio, 200)
 
-        Logger.info(
-          "[Dial Server] not noise, time since last click: #{time_gap}  lowest: #{state.lowest_time_til_sound}"
-        )
-
         process_click(timestamp, state)
       else
         log("skip noise click", timestamp)

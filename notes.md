@@ -159,11 +159,48 @@ Sat June 15, 2024
 > Added config for neopixels/blinkchain
 > Added LEDServer genserver to manage neopixels
 
+Sat June 23, 2024
+> 8 LEDs are using too much power
+
+
+Sat July 6, 2024
+> previously printed case that has vertical lipo charger holder
+> ordered a new audio cable with pigtail.  Current one is big and hard to place inside phone
+
+Sun July 7, 2024
+> ?
+
+Sat July 20, 2024
+> previously soldered new usb-mini pigtail and fixed up some other wiring
+> progress on presentation
+
+Wed Jul 24, 2024
+> soldered resistors to the Adafruit lipo chargers to increase charging rate hopefully
+> put phone together for testing.  
+> dialed my cellphone, had a successful call
+
+
+Sun Aug 11, 2024
+> Previously - discovered that the vintage cord turned into USB was not allowing for a good charge
+> Ordered USB A cord with pigtail end to replace vintage cord
+
+> Built new prototype board to be a HAT
+* need to change gpio pins, a couple pins changed.  
+
+* make a livebook
+* get the circuitry reviewed
+
+* try bigger waveshare antennea
+* need to test phone
+
 * bell isn't ringing for incoming call
 
 ## Get this thing ready for presentation!
 
 ### Vintage phone
+
+
+* Adafruit lipoly Charger LEDs are available as output pins
 
 Code:
 * make some other tones instead of dial tone
@@ -181,9 +218,7 @@ Bonus:
 * Add timeouts in state machine
 * Get dial tone and network busy sounds to play
 * Turn fona_modem into AT modem.  Move any params to init method, not config
-* livebook?
 * put state into structs
-* support serial port incoming call detection (the Hat B version has no RI pin)
 * charge both batteries from usb
 √ Wire and fit everything into MonoPhone
 √ fona_modem: detect call and let client know
@@ -217,6 +252,7 @@ Bonus:
 * Play extended tones - dial tone, fast busy
 * Ring indicator pin
 * Network pin
+* Shows battery level in response to AT+CBC, not just voltage
 
 ### How keypad based phone could work
 * change circuits.gpio version in FONA.  Don't need to use the one that keypad uses

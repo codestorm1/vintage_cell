@@ -16,3 +16,5 @@ show = fn first, last, color ->
 
   Blinkchain.render()
 end
+
+"323" |> String.to_charlist |> Enum.each(fn digit -> NervesCell.CellStateMachine.digit_dialed(to_string(digit)) end)

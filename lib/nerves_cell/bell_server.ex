@@ -14,7 +14,7 @@ defmodule NervesCell.BellServer do
 
   @impl GenServer
   def init(pin) do
-    Logger.info("Bell server init on pin STATE: #{pin}")
+    Logger.debug("Bell server init pin: #{pin}")
     {:ok, bell_gpio} = Circuits.GPIO.open(pin, :output)
 
     :ok = Circuits.GPIO.write(bell_gpio, 0)

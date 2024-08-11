@@ -16,8 +16,8 @@ defmodule NervesCell.LEDServer do
   alias Blinkchain.Point
   # alias NervesCell.Colors
 
-  @red Blinkchain.Color.parse("#2200FF")
-  @blue Blinkchain.Color.parse("#FF0022")
+  # @red Blinkchain.Color.parse("#2200FF")
+  # @blue Blinkchain.Color.parse("#FF0022")
   @green Blinkchain.Color.parse("#22FF22")
   @black Blinkchain.Color.parse("#000000")
 

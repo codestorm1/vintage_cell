@@ -47,22 +47,12 @@ defmodule NervesCell.PhoneHookServer do
         {:circuits_gpio, _pin, timestamp, value},
         %{last_click_time: last_click_time, client_pid: _client_pid} = state
       ) do
-    # Logger.info("[Hook Server] GPIO handle info was called with #{value}")
-
     # check how soon click came.  Skip it as noise if too soon (debounce)
     time_gap = timestamp - last_click_time
-
-    # Logger.info(
-    #   "time gap: #{inspect(time_gap)} timestamp: #{inspect(timestamp)} last_click_time: #{inspect(last_click_time)}"
-    # )
 
     state =
       if time_gap > @noise_time_ns do
         hook_state = gpio_value_to_hook_state(value)
-
-        # Logger.info(
-        #   "[Hook Server] not noise, time since last click: #{time_gap} incoming value: #{value} Hook state: #{hook_state}"
-        # )
         Logger.info("[Hook Server] value: #{value} Hook state: #{hook_state}")
 
         case hook_state do
@@ -73,14 +63,10 @@ defmodule NervesCell.PhoneHookServer do
             CellStateMachine.go_off_hook()
         end
 
-        # GenServer.cast(client_pid, hook_state)
-
         state
         |> Map.put(:hook_state, hook_state)
         |> Map.put(:last_click_time, timestamp)
       else
-        # Logger.info("[Hook Server] Skipping hook noise click, time since last click: #{time_gap}")
-
         state
       end
 
