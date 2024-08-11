@@ -42,14 +42,16 @@ config :waveshare_modem,
   # hook_gpio_pin: gpio_pins[25],
   # dial_gpio_pin: gpio_pins[23],
   # other_input_pin: gpio_pins[23],
-  bell_ringer_pin: gpio_pins[20],
+
+  bell_ringer_pin: gpio_pins[16],
+
   # these are output pins for LEDs for debugging
   digit_detected_led_pin: gpio_pins[6],
-  click_detected_led_pin: gpio_pins[16],
+  click_detected_led_pin: gpio_pins[1],
   noise_detected_led_pin: gpio_pins[26],
   # FONA pins
   key_pin: gpio_pins[5],
-  ring_indicator_pin: gpio_pins[21],
+  ring_indicator_pin: gpio_pins[20],
   power_status_pin: gpio_pins[27],
   network_status_pin: gpio_pins[17],
   # not hooked up yet, for hanging up phone
