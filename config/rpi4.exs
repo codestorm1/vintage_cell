@@ -44,9 +44,9 @@ config :waveshare_modem,
   # other_input_pin: gpio_pins[23],
   bell_ringer_pin: gpio_pins[20],
   # these are output pins for LEDs for debugging
-  digit_detected_pin: gpio_pins[6],
-  click_detected_pin: gpio_pins[16],
-  noise_detected_pin: gpio_pins[26],
+  digit_detected_led_pin: gpio_pins[6],
+  click_detected_led_pin: gpio_pins[16],
+  noise_detected_led_pin: gpio_pins[26],
   # FONA pins
   key_pin: gpio_pins[5],
   ring_indicator_pin: gpio_pins[21],

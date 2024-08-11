@@ -42,11 +42,11 @@ defmodule NervesCell.RotaryDialServer do
   # 4 - yellow
 
   # # yellow
-  # @digit_detected_pin 24
+  # @digit_detected_led_pin 24
   # # blue
-  # @click_detected_pin 16
+  # @click_detected_led_pin 16
   # # white
-  # @noise_detected_pin 20
+  # @noise_detected_led_pin 20
 
   @log_fn "/data/log.csv"
 
@@ -74,15 +74,15 @@ defmodule NervesCell.RotaryDialServer do
           raise "bad pin"
       end
 
-    # digit_detected_pin = Application.fetch_env!(:nerves_cell, :digit_detected_pin)
-    # noise_detected_pin = Application.fetch_env!(:nerves_cell, :noise_detected_pin)
-    # click_detected_pin = Application.fetch_env!(:nerves_cell, :click_detected_pin)
+    # digit_detected_led_pin = Application.fetch_env!(:nerves_cell, :digit_detected_led_pin)
+    # noise_detected_led_pin = Application.fetch_env!(:nerves_cell, :noise_detected_led_pin)
+    # click_detected_led_pin = Application.fetch_env!(:nerves_cell, :click_detected_led_pin)
     # not sure why, but :falling generates way more clicks than :rising
     :ok = Circuits.GPIO.set_interrupts(dial_gpio, :rising)
 
-    # {:ok, digit_gpio} = Circuits.GPIO.open(digit_detected_pin, :output)
-    # {:ok, noise_gpio} = Circuits.GPIO.open(noise_detected_pin, :output)
-    # {:ok, click_gpio} = Circuits.GPIO.open(click_detected_pin, :output)
+    # {:ok, digit_gpio} = Circuits.GPIO.open(digit_detected_led_pin, :output)
+    # {:ok, noise_gpio} = Circuits.GPIO.open(noise_detected_led_pin, :output)
+    # {:ok, click_gpio} = Circuits.GPIO.open(click_detected_led_pin, :output)
 
     # TODO: do this above in open, using options
     # Circuits.GPIO.write(digit_gpio, 0)
