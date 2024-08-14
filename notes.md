@@ -184,6 +184,12 @@ Sun Aug 11, 2024
 > Previously - discovered that the vintage cord turned into USB was not allowing for a good charge
 > Ordered USB A cord with pigtail end to replace vintage cord
 
+Tues Aug 13, 2024
+> Previously built new proto board HAT to stack on WaveShare HAT
+> The Pi isn't responding over wifi
+> Tried swapping in another Rpi0W, same result
+
+
 > Built new prototype board to be a HAT
 * need to change gpio pins, a couple pins changed.  
 
