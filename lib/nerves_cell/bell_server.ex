@@ -19,7 +19,7 @@ defmodule NervesCell.BellServer do
 
     :ok = Circuits.GPIO.write(bell_gpio, 0)
 
-    {:ok, %{bell_gpio: bell_gpio}}
+    {:ok, %{bell_gpio: bell_gpio, bell_pin: pin}}
   end
 
   @spec ring_bell() :: :ok
@@ -35,9 +35,9 @@ defmodule NervesCell.BellServer do
   @impl GenServer
   def handle_cast(
         :ring_bell,
-        %{bell_gpio: bell_gpio} = state
+        %{bell_gpio: bell_gpio, bell_pin: bell_pin} = state
       ) do
-    Logger.info("[Bell Server] ring_bell was called")
+    Logger.info("[Bell Server] ring_bell was called.  Ring bell at #{bell_pin}")
     :ok = Circuits.GPIO.write(bell_gpio, 1)
     Process.send_after(self(), :stop_bell, @ring_duration)
     {:noreply, state}

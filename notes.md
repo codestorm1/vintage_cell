@@ -188,18 +188,23 @@ Tues Aug 13, 2024
 > Previously built new proto board HAT to stack on WaveShare HAT
 > The Pi isn't responding over wifi
 > Tried swapping in another Rpi0W, same result
-
-
+> The problem was configuration.  An application fetch call was failing trying to read some config, which stopped the app before getting on wifi.  Test in local IEx to look for this issue.
+ 
 > Built new prototype board to be a HAT
-* need to change gpio pins, a couple pins changed.  
 
+Fri Aug 16, 2024
+> Reworked circuit on proto circuit board to better orient components
+> Double checked the circuitry.  It didnt have gpio inputs grounded.  Made that change.
+> No longer using the perma-proto board
+> Getting more consistency from phone after these changes.  Still have too many untamed wires inside.
+> Changed some GPIO pin numbers  
+
+* drill holes in bell board so that a rubber band can tie down the coil
+* get a right angle 3.5 audio cable with pigtails
 * make a livebook
 * get the circuitry reviewed
 
 * try bigger waveshare antennea
-* need to test phone
-
-* bell isn't ringing for incoming call
 
 ## Get this thing ready for presentation!
 

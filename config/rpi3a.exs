@@ -51,9 +51,9 @@ config :waveshare_modem,
   # click_detected_led_pin: gpio_pins[1],
   # noise_detected_led_pin: gpio_pins[26],
   # FONA pins
-  key_pin: gpio_pins[5],
-  ring_indicator_pin: gpio_pins[20],
-  power_status_pin: gpio_pins[27],
-  network_status_pin: gpio_pins[17],
+  # key_pin: gpio_pins[5],
+  # ring_indicator_pin: gpio_pins[20],
+  # power_status_pin: gpio_pins[27],
+  # network_status_pin: gpio_pins[17],
   # not hooked up yet, for hanging up phone
   dtr_pin: 0
