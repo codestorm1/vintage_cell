@@ -199,6 +199,7 @@ Fri Aug 16, 2024
 > Getting more consistency from phone after these changes.  Still have too many untamed wires inside.
 > Changed some GPIO pin numbers  
 
+* stop listening for clicks while ringing the bell
 * drill holes in bell board so that a rubber band can tie down the coil
 * get a right angle 3.5 audio cable with pigtails
 * make a livebook
