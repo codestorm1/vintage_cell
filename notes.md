@@ -198,14 +198,24 @@ Fri Aug 16, 2024
 > No longer using the perma-proto board
 > Getting more consistency from phone after these changes.  Still have too many untamed wires inside.
 > Changed some GPIO pin numbers  
+> Ordered a right angle 3.5 audio cable with pigtails
+
+Sat Aug 17, 2024
+> flushing UART before making a call
+> Switching WaveShare back to using config values
+> cleanup gpios in configs
 
 * stop listening for clicks while ringing the bell
 * drill holes in bell board so that a rubber band can tie down the coil
-* get a right angle 3.5 audio cable with pigtails
 * make a livebook
+
+* make KiCad schematic
 * get the circuitry reviewed
 
-* try bigger waveshare antennea
+* clean up code, make private branch, make main public
+* make new GenServer for Ring Indicator
+
+* try bigger waveshare antenna
 
 ## Get this thing ready for presentation!
 

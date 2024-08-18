@@ -19,3 +19,7 @@ config :nerves_runtime,
        "a.nerves_fw_platform" => "host",
        "a.nerves_fw_version" => "0.0.0"
      }}
+
+config :waveshare_modem,
+  uart_name: "ttyAMA0",
+  ring_indicator_pin: 17

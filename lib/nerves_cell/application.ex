@@ -5,9 +5,9 @@ defmodule NervesCell.Application do
 
   use Application
 
-  @hook_gpio 25
-  @dialer_gpio 23
-  @bell_gpio 5
+  @bell_gpio Application.compile_env(:nerves_cell, :bell_ringer_pin)
+  @hook_gpio Application.compile_env(:nerves_cell, :hook_gpio_pin)
+  @dial_gpio Application.compile_env(:nerves_cell, :dial_gpio_pin)
 
   @impl true
   def start(_type, _args) do
@@ -23,7 +23,7 @@ defmodule NervesCell.Application do
         {WaveshareModem, %{}},
         {NervesCell.BellServer, @bell_gpio},
         {NervesCell.CellStateMachine, {:on_hook, ""}},
-        {NervesCell.RotaryDialServer, {self(), @dialer_gpio}},
+        {NervesCell.RotaryDialServer, {self(), @dial_gpio}},
         {NervesCell.PhoneHookServer, {self(), @hook_gpio}},
         {NervesCell.LEDServer, nil}
       ] ++ children(target())
