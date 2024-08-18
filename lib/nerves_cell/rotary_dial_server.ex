@@ -32,22 +32,6 @@ defmodule NervesCell.RotaryDialServer do
   # viewed from oscilloscope, actual digit dialing time maxes around 1,200
   @digit_timeout_ms 700
 
-  # 1 is dark blue (√ works)
-  # 24 is dark green 2 (√ works)
-
-  # these are debug outputs, showing what the progam is seeing
-  # wire colors
-  # 2 - white
-  # 3 - blue
-  # 4 - yellow
-
-  # # yellow
-  # @digit_detected_led_pin 24
-  # # blue
-  # @click_detected_led_pin 16
-  # # white
-  # @noise_detected_led_pin 20
-
   @log_fn "/data/log.csv"
 
   # def info(message) do
