@@ -134,6 +134,12 @@ defmodule NervesCell.CellStateMachine do
     {:next_state, :off_hook_dialtone, data, [{:reply, from, :ok}]}
   end
 
+  def on_hook({:call, _from}, {:digit_dialed, "9"}, _data) do
+    Logger.info("REBOOT!")
+    Nerves.Runtime.reboot()
+    {:next_state, :rebooting, ""}
+  end
+
   def on_hook({:call, from}, action, _data) do
     Logger.warning("onhook CATCHALL called.  action: #{inspect(action)}")
     {:keep_state_and_data, [{:reply, from, {:error, :invalid_state_transition}}]}

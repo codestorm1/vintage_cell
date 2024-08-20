@@ -204,7 +204,16 @@ Sat Aug 17, 2024
 > flushing UART before making a call
 > Switching WaveShare back to using config values
 > cleanup gpios in configs
+> ok to power RPi0 with 3.7V lipo battery? - yes, through the Adafruit charger
+> Stability is much better after new proto board is being used 
+> install 90 degree angle audio plug - done
 
+Mon Aug 19, 2024
+> Previous: found antennas to test.  Would be too hard to mount them inside the phone.  Maybe only for GPS anyway
+> Stability is good.  Sometimes fails to make phone call, despite sending correct ATD command
+> Added a function in WaveShare to read_until_timeout
+
+* Could weak antenna/signal strength be the cause of dialing sometimes not working?
 * stop listening for clicks while ringing the bell
 * drill holes in bell board so that a rubber band can tie down the coil
 * make a livebook
@@ -212,28 +221,29 @@ Sat Aug 17, 2024
 * make KiCad schematic
 * get the circuitry reviewed
 
-* clean up code, make private branch, make main public
-* make new GenServer for Ring Indicator
+* release the code - clean up code, make private branch, make main public
+* make new GenServer for Ring Indicator - shouldn't be in the WaveShareModem Server
 
-* try bigger waveshare antenna
 
 ## Get this thing ready for presentation!
 
 ### Vintage phone
 
+### Fixes to be made sooner
 
-* Adafruit lipoly Charger LEDs are available as output pins
+* improve the sound coming from the mic in the MonoPhone
 
 Code:
-* make some other tones instead of dial tone
-* make use of D6 pin to turn modem on and off
-* get the volume up - check out the modem's WaveSahre wiki
 * dialing detection is off, fix it - (maybe only when not pausing between digits?)
+* make a tone in place of dial tone
+* get the volume up? - check out the modem's WaveShare wiki
 
 Physical:
-* pin arrangement is too fragile, use right angle male headers
-* tighten up wiring inside
-* ok to power RPi0 with 3.7V lipo battery?
+* Improve the 3D case to better support the waveshare
+* tie down bell coil
+
+* make use of D6 pin to turn modem on and off
+
 
 Bonus:
 * status neopixel?
@@ -242,6 +252,7 @@ Bonus:
 * Turn fona_modem into AT modem.  Move any params to init method, not config
 * put state into structs
 * charge both batteries from usb
+* Adafruit lipoly Charger LEDs are available as output pins
 √ Wire and fit everything into MonoPhone
 √ fona_modem: detect call and let client know
 √ Fit bell and battery
